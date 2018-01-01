@@ -7,11 +7,10 @@ import requests
 OUT_DIR='repos'
 os.makedirs(OUT_DIR, exist_ok=True)
 
-
 print('Fetching repo list.')
 repos = []
-for i in range(1, 100000):
-    r = requests.get("https://api.github.com/users/nyxxxie/starred?page=" + i)
+for i in range(1, 100000):  # hopefully I never star more than 100000 pages of  repos...
+    r = requests.get("https://api.github.com/users/nyxxxie/starred?page={}".format(i))
     j = json.loads(r.text)
     if len(j) == 0:
         break
